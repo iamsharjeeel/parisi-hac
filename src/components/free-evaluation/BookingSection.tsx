@@ -31,20 +31,19 @@ export function BookingSection() {
           </ul>
         </SectionReveal>
 
-        <SectionReveal delayMs={80} className="mx-auto mt-10 max-w-2xl md:mt-12">
-          <div className="overflow-hidden border border-white/10 bg-white text-ink shadow-[0_20px_60px_rgba(0,0,0,0.35)]">
-            <div className="border-b border-line bg-surface px-5 py-5 md:px-7">
-              <p className="font-heading text-lg font-bold text-near-black md:text-xl">
+        <SectionReveal delayMs={80} className="mx-auto mt-10 max-w-[34rem] md:mt-12">
+          <div className="booking-card relative overflow-hidden border border-white/10 bg-[#111111]">
+            <div className="absolute inset-x-0 top-0 h-[3px] bg-parisi" aria-hidden />
+            <div className="border-b border-white/8 px-5 py-5 md:px-7 md:py-6">
+              <p className="font-heading text-lg font-bold tracking-tight text-white md:text-xl">
                 {booking.offerTitle}
               </p>
-              <p className="mt-1 text-sm font-medium text-muted">{site.name}</p>
-              <p className="mt-2 text-sm text-muted">
-                {site.addressLine1}
-                <br />
-                {site.addressLine2}
+              <p className="mt-1 text-sm text-white/55">{site.name}</p>
+              <p className="mt-3 text-sm leading-relaxed text-white/45">
+                {site.addressLine1}, {site.addressLine2}
               </p>
             </div>
-            <div className="px-3 py-4 md:px-5 md:py-5">
+            <div className="booking-form-shell px-4 py-5 md:px-6 md:py-6">
               <BookingEmbed />
             </div>
           </div>

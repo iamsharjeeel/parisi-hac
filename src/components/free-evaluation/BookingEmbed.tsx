@@ -4,8 +4,23 @@ import { useEffect, useRef, useState } from "react";
 import { site } from "@/lib/content";
 import { trackEvaluationBookingSuccess } from "@/lib/analytics";
 import { wellnessLiving } from "@/lib/booking";
+import { WL_FORM_THEME_CSS } from "./bookingFormTheme";
 
 type Status = "loading" | "ready" | "error";
+
+function injectThemeIntoRoots(root: ParentNode) {
+  const hosts = root.querySelectorAll("wl-lead-capture-widget");
+  hosts.forEach((host) => {
+    const shadow = (host as HTMLElement & { shadowRoot?: ShadowRoot | null })
+      .shadowRoot;
+    if (!shadow) return;
+    if (shadow.getElementById("parisi-wl-theme")) return;
+    const style = document.createElement("style");
+    style.id = "parisi-wl-theme";
+    style.textContent = WL_FORM_THEME_CSS;
+    shadow.appendChild(style);
+  });
+}
 
 function ConfirmationWatcher({
   rootRef,
@@ -83,9 +98,7 @@ export function BookingEmbed() {
       script.src = wellnessLiving.scriptUrl;
       script.type = "module";
       script.async = true;
-      script.onload = () => {
-        markReady();
-      };
+      script.onload = markReady;
       script.onerror = markError;
       document.body.appendChild(script);
     } else if (existing.dataset.loaded === "true") {
@@ -122,28 +135,39 @@ export function BookingEmbed() {
     return () => existing.removeEventListener("load", onLoad);
   }, []);
 
+  useEffect(() => {
+    const root = containerRef.current;
+    if (!root) return;
+
+    injectThemeIntoRoots(root);
+    const observer = new MutationObserver(() => injectThemeIntoRoots(root));
+    observer.observe(root, { childList: true, subtree: true });
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <div className="relative">
       <ConfirmationWatcher rootRef={containerRef} />
 
       {status === "loading" ? (
         <div
-          className="absolute inset-x-0 top-0 z-10 flex min-h-[420px] items-center justify-center bg-white/90 text-sm text-muted"
+          className="absolute inset-x-0 top-0 z-10 flex min-h-[360px] flex-col items-center justify-center gap-3 bg-[#111111] text-sm text-white/55"
           aria-live="polite"
         >
-          Loading scheduling form…
+          <span className="booking-loader" aria-hidden />
+          Loading evaluation form…
         </div>
       ) : null}
 
       {status === "error" ? (
         <div
-          className="min-h-[280px] border border-line bg-surface px-5 py-8 text-center"
+          className="min-h-[240px] border border-white/10 bg-white/[0.03] px-5 py-8 text-center"
           role="alert"
         >
-          <p className="font-heading text-lg font-semibold text-near-black">
-            Having trouble loading the calendar?
+          <p className="font-heading text-lg font-semibold text-white">
+            Having trouble loading the form?
           </p>
-          <p className="mt-3 text-base text-muted">
+          <p className="mt-3 text-base text-white/60">
             Call Parisi Horsham at{" "}
             <a
               href={`tel:${site.phoneTel}`}
@@ -160,12 +184,6 @@ export function BookingEmbed() {
         ref={containerRef}
         className={`wl-lead-capture relative ${status === "error" ? "hidden" : ""}`}
       >
-        {/*
-          WellnessLiving lead-capture widget — IDs verified from
-          parisispeedschoolhorsham.com/evaluation
-          TODO: If WellnessLiving skin/business IDs change, update
-          NEXT_PUBLIC_WL_* environment variables.
-        */}
         <wl-lead-capture-widget
           host={wellnessLiving.host}
           k_business={wellnessLiving.businessId}

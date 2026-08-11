@@ -1,6 +1,7 @@
 ## HANDOVER — Parisi Free Evaluation Landing
 
 ### What changed
+- Redesigned booking form UI: dark Parisi card, themed WL fields, scaled captcha treatment, shadow-DOM theme injection
 - Fixed Vercel build: removed broken `Source_Sans_3` next/font fetch (gstatic 404s); Kanit only
 - Built production Meta Ads landing page at `/free-evaluation`
 - Reused verified WellnessLiving lead-capture widget from live Horsham evaluation page
