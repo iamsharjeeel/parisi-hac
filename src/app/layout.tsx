@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Kanit, Source_Sans_3 } from "next/font/google";
+import { Kanit } from "next/font/google";
 import { MetaPixel } from "@/components/analytics/MetaPixel";
 import { AttributionCapture } from "@/components/analytics/AttributionCapture";
 import "./globals.css";
@@ -11,14 +11,9 @@ const kanit = Kanit({
   display: "swap",
 });
 
-const sourceSans = Source_Sans_3({
-  variable: "--font-body",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  display: "swap",
-});
-
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.parisispeedschoolhorsham.com";
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ||
+  "https://www.parisispeedschoolhorsham.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -35,7 +30,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={`${kanit.variable} ${sourceSans.variable} h-full`}>
+    <html lang="en" className={`${kanit.variable} h-full`}>
       <body className="min-h-full font-sans antialiased">
         <AttributionCapture />
         <MetaPixel />

@@ -1,6 +1,7 @@
 ## HANDOVER — Parisi Free Evaluation Landing
 
 ### What changed
+- Fixed Vercel build: removed broken `Source_Sans_3` next/font fetch (gstatic 404s); Kanit only
 - Built production Meta Ads landing page at `/free-evaluation`
 - Reused verified WellnessLiving lead-capture widget from live Horsham evaluation page
 - Added Meta Pixel PageView + `Schedule` conversion tracking (confirmation-only)

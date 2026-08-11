@@ -24,7 +24,8 @@
   --color-line: var(--line);
   --color-surface: var(--surface);
   --font-heading: var(--font-kanit);
-  --font-sans: var(--font-body);
+  --font-sans: var(--font-kanit);
+  --font-body: var(--font-kanit);
 }
 
 html {
