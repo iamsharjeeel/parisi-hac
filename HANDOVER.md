@@ -26,6 +26,5 @@
 - Permissioned testimonials (`src/lib/testimonials.ts` is empty by design)
 - Confirm GHL Conversions API uses the same `eventId`
 
-### Notes
-- Do not ship the adult-athlete photos currently in `public/images/`
-- Rate limiter is per serverless instance, not a distributed guarantee
+- Also upgraded `sharp` to 0.35.3 to clear the libvips high advisory
+- Full write-up: `REPORT.md`
