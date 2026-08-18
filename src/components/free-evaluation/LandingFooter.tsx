@@ -1,42 +1,35 @@
-import { site } from "@/lib/content";
+import { footerCopy, site } from "@/lib/content";
 
 export function LandingFooter() {
+  const year = new Date().getFullYear();
+
   return (
-    <footer className="border-t border-line bg-white">
-      <div className="container-page flex flex-col gap-6 py-10 md:flex-row md:items-end md:justify-between">
+    <footer className="border-t border-hairline bg-canvas">
+      <div className="container-page flex flex-col gap-8 py-12 lg:flex-row lg:items-start lg:justify-between">
         <div>
-          <p className="font-heading text-lg font-bold text-near-black">{site.name}</p>
-          <p className="mt-2 text-sm leading-relaxed text-muted">
+          <p className="text-[15px] font-semibold text-ink">{site.name}</p>
+          <p className="body mt-2">
             {site.addressLine1}
             <br />
             {site.addressLine2}
           </p>
           <a
             href={`tel:${site.phoneTel}`}
-            className="mt-3 inline-block text-sm font-semibold text-near-black transition-colors hover:text-parisi"
+            className="mt-3 inline-block text-[15px] text-body"
           >
             {site.phoneDisplay}
           </a>
         </div>
-
-        <nav aria-label="Legal" className="flex gap-5 text-sm text-muted">
-          <a
-            href={site.privacyUrl}
-            className="transition-colors hover:text-parisi"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Privacy Policy
-          </a>
-          <a
-            href={site.termsUrl}
-            className="transition-colors hover:text-parisi"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Terms
-          </a>
+        <nav aria-label="Legal" className="flex flex-wrap gap-5 text-[15px] text-muted">
+          <a href="/privacy">{footerCopy.privacy}</a>
+          <a href="/terms">{footerCopy.terms}</a>
+          <a href="/sms-terms">{footerCopy.sms}</a>
         </nav>
+      </div>
+      <div className="container-page border-t border-hairline py-6">
+        <p className="label-caps text-muted">
+          © {year} Parisi Speed School Horsham
+        </p>
       </div>
     </footer>
   );

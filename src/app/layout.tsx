@@ -1,13 +1,21 @@
 import type { Metadata } from "next";
-import { Kanit } from "next/font/google";
+import type { ReactNode } from "react";
+import { Archivo, Archivo_Narrow } from "next/font/google";
 import { MetaPixel } from "@/components/analytics/MetaPixel";
 import { AttributionCapture } from "@/components/analytics/AttributionCapture";
 import "./globals.css";
 
-const kanit = Kanit({
-  variable: "--font-kanit",
+const archivo = Archivo({
+  variable: "--font-archivo",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
+  weight: ["400", "600", "700", "800"],
+  display: "swap",
+});
+
+const archivoNarrow = Archivo_Narrow({
+  variable: "--font-archivo-narrow",
+  subsets: ["latin"],
+  weight: ["400", "600", "700"],
   display: "swap",
 });
 
@@ -22,16 +30,23 @@ export const metadata: Metadata = {
     template: "%s | Parisi Speed School Horsham",
   },
   description:
-    "Athletic performance training for youth athletes at Parisi Speed School Horsham.",
+    "Free 60-minute athletic evaluation for ages 5 to 18 at Parisi Speed School Horsham.",
   icons: {
     icon: "/favicon.ico",
   },
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: ReactNode;
+}>) {
   return (
-    <html lang="en" className={`${kanit.variable} h-full`}>
-      <body className="min-h-full font-sans antialiased">
+    <html
+      lang="en"
+      className={`${archivo.variable} ${archivoNarrow.variable} h-full`}
+    >
+      <body className="min-h-full bg-canvas font-copy antialiased">
         <AttributionCapture />
         <MetaPixel />
         {children}

@@ -1,58 +1,41 @@
-import Image from "next/image";
-import { hero } from "@/lib/content";
-import { PrimaryCTA } from "./PrimaryCTA";
-import { SectionReveal } from "./SectionReveal";
+import { ctaLabel, hero } from "@/lib/content";
+import { Reveal } from "@/components/Reveal";
+import { HeroFormSlot } from "./HeroFormSlot";
 
 export function HeroSection() {
   return (
-    <section className="relative overflow-hidden bg-white" aria-labelledby="hero-heading">
-      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(135deg,#ffffff_0%,#f7f7f7_48%,#ffffff_100%)]" />
-      <div className="pointer-events-none absolute -right-24 top-0 h-[28rem] w-[28rem] bg-[radial-gradient(circle,rgba(237,28,36,0.08),transparent_68%)]" />
-
-      <div className="container-page relative grid items-center gap-10 py-10 md:grid-cols-[1.15fr_0.85fr] md:gap-12 md:py-16 lg:gap-16 lg:py-20">
-        <SectionReveal>
-          <p className="eyebrow mb-4">{hero.eyebrow}</p>
-          <h1
-            id="hero-heading"
-            className="max-w-[16ch] text-[2.4rem] font-bold text-near-black sm:text-[2.75rem] md:text-[3.25rem] lg:text-[3.75rem]"
-          >
-            <span className="block">{hero.h1Line1}</span>
-            <span className="mt-1 block text-parisi">{hero.h1Line2}</span>
-          </h1>
-          <p className="mt-5 max-w-xl text-base leading-relaxed text-muted md:text-lg">
-            {hero.support}
-          </p>
-          <div className="mt-8 flex flex-col gap-3 sm:items-start">
-            <PrimaryCTA placement="hero" fullWidth className="sm:w-auto sm:min-w-[20rem]">
-              {hero.cta}
-            </PrimaryCTA>
-            <p className="text-sm font-medium text-ink/70">{hero.micro}</p>
-          </div>
-        </SectionReveal>
-
-        <SectionReveal delayMs={80} className="relative">
-          <div className="relative aspect-[4/5] overflow-hidden bg-charcoal md:aspect-[5/6]">
-            <Image
-              src="/images/hero-training.webp"
-              alt="Youth athlete training with a Parisi coach at Horsham"
-              fill
-              priority
-              sizes="(max-width: 768px) 100vw, 42vw"
-              className="object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent" />
-            <div className="absolute bottom-4 left-4 border border-white/25 bg-near-black/80 px-4 py-3 text-white backdrop-blur-[2px]">
-              <p className="font-heading text-[0.7rem] font-semibold leading-tight tracking-[0.16em]">
-                {hero.badgeLines.map((line) => (
-                  <span key={line} className="block">
-                    {line}
-                  </span>
-                ))}
-              </p>
+    <section className="relative min-h-svh" aria-labelledby="hero-heading">
+      <div className="hero-fallback absolute inset-0" />
+      <div data-hero-media className="absolute inset-0">
+        {/* [ASSET] youth-athlete photography for the hero */}
+      </div>
+      <div className="hero-overlay absolute inset-0" />
+      <div className="container-page relative z-10 flex min-h-svh items-center py-16 lg:items-end lg:pb-16 lg:pt-32">
+        <div className="grid w-full items-end gap-8 lg:grid-cols-12 lg:gap-12">
+          <Reveal className="lg:col-span-7">
+            <p className="label-caps mb-4 text-accent-bright">{hero.eyebrow}</p>
+            <h1 id="hero-heading" className="display-hero">
+              {hero.h1Lines.map((line) => (
+                <span key={line} className="block">
+                  {line}
+                </span>
+              ))}
+            </h1>
+            <p className="body-lg measure mt-6">{hero.sub}</p>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+              <a href="#request-evaluation" className="btn-primary">
+                {ctaLabel}
+              </a>
+              <a href="#whats-tested" className="btn-ghost">
+                {hero.ghost}
+              </a>
             </div>
-            <div className="absolute left-0 top-0 h-full w-[3px] bg-parisi" aria-hidden />
+            <p className="body mt-4 text-muted">{hero.micro}</p>
+          </Reveal>
+          <div className="hidden lg:col-span-5 lg:block">
+            <HeroFormSlot />
           </div>
-        </SectionReveal>
+        </div>
       </div>
     </section>
   );

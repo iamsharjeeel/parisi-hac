@@ -1,177 +1,210 @@
 export const site = {
   name: "Parisi Speed School Horsham",
-  phoneDisplay: "267-266-3430",
-  phoneTel: "2672663430",
+  // [RESOLVE: decided 215-262-2935 from ad creatives; replaces 267-266-3430]
+  phoneDisplay: "215-262-2935",
+  phoneTel: "+12152622935",
   addressLine1: "400 Horsham Road",
   addressLine2: "Horsham, PA 19044",
-  ageRange: "Ages 5–18",
-  evaluationLength: "60 Minutes",
-  privacyUrl: "https://www.parisispeedschoolhorsham.com/privacy",
-  termsUrl: "https://www.parisispeedschoolhorsham.com/terms",
-  facebookUrl: "https://www.facebook.com/parisihorsham/",
-  instagramUrl: "https://www.instagram.com/parisihorsham/",
+  mapsUrl:
+    "https://www.google.com/maps/search/?api=1&query=400+Horsham+Road%2C+Horsham%2C+PA+19044",
 } as const;
+
+export const ctaLabel = "Request the evaluation";
 
 export const hero = {
-  eyebrow: "FREE ATHLETIC PERFORMANCE EVALUATION • HORSHAM, PA",
-  h1Line1: "Know Where Your Athlete Stands.",
-  h1Line2: "Know What to Train Next.",
-  support:
-    "Start with a free 60-minute Parisi Performance Evaluation. We'll assess speed, power, movement and running mechanics, then walk you through the results so you leave with a clear starting point.",
-  cta: "Book My Athlete's Free Evaluation",
-  ctaShort: "Book Free Evaluation",
-  micro: "Free • 60 Minutes • Ages 5–18 • Horsham, PA",
-  badgeLines: ["60 MIN", "PERFORMANCE", "EVALUATION"],
+  eyebrow: "Free 60-minute evaluation · Ages 5 to 18 · Horsham, PA",
+  h1Lines: ["Know", "your", "starting point"] as const,
+  sub: "Sixty minutes of testing at Parisi Speed School Horsham. Speed, power and movement, measured by a coach, with every number explained before your athlete leaves the floor.",
+  ghost: "See what's tested",
+  micro: "Free. No card. No membership.",
 } as const;
 
-export const trustStats = [
-  {
-    value: "25+ Years",
-    label: "Parisi Performance Training",
-    note: "Parisi system",
+export const credentialsBar = {
+  label: "Parisi system · Local Horsham coaching",
+} as const;
+
+export const credentials = {
+  // [VERIFY] franchise-level claim
+  years: {
+    value: "25+",
+    label: "Years",
+    note: "Across the Parisi system",
   },
-  {
+  // [VERIFY] franchise-level claim
+  athletes: {
     value: "650,000+",
-    label: "Athletes Trained Through Parisi",
-    note: "Parisi system",
+    label: "Athletes trained",
+    note: "Across the Parisi system",
   },
-  {
-    value: "Ages 5–18",
-    label: "Youth Athlete Development",
-    note: "local",
+  ages: {
+    value: "5 to 18",
+    label: "Ages",
+    note: "Youth athlete development",
   },
-  {
-    value: "Horsham, PA",
-    label: "Local Coaching & Evaluation",
-    note: "local",
+  location: {
+    value: "Horsham",
+    label: "Location",
+    note: "Coaching and evaluation",
   },
-] as const;
-
-export const assessment = {
-  eyebrow: "A BETTER STARTING POINT",
-  headline: "Stop Guessing. Start With a Baseline.",
-  body: [
-    "Every athlete develops differently. Before deciding what to train, it helps to know exactly where they are today.",
-    "The Parisi Evaluation gives our coaches an objective look at your athlete's speed, power, movement and running mechanics — so training can begin with useful information instead of assumptions.",
-  ],
-  cards: [
-    {
-      title: "Speed & Running",
-      copy: "See how your athlete accelerates and moves through sprint mechanics, including running analysis and the 10-yard dash.",
-    },
-    {
-      title: "Power & Strength",
-      copy: "Assess explosive ability and physical performance through measurements including the vertical jump and strength-based testing.",
-    },
-    {
-      title: "Mobility & Movement",
-      copy: "Evaluate how your athlete moves through mobility work and Parisi's dynamic warm-up.",
-    },
-  ],
 } as const;
 
-export const process = {
-  eyebrow: "YOUR FREE EVALUATION",
-  headline: "60 Minutes. A Much Clearer Picture.",
+export const baseline = {
+  kicker: "01 / 05",
+  heading: "Stop guessing",
+  body: [
+    "Every athlete develops on their own timeline. Two twelve-year-olds on the same team can need completely different work, and there is no way to tell which is which by watching a game.",
+    "The evaluation gives a coach an objective read on how your athlete accelerates, how much force they produce, and how well they move under control. Training decisions come after that.",
+  ] as const,
+  columns: [
+    {
+      title: "Speed and running",
+      copy: "Acceleration, sprint mechanics and the 10-yard dash, on the clock.",
+    },
+    {
+      title: "Power and strength",
+      copy: "Vertical jump and strength testing. How much force, and how quickly.",
+    },
+    {
+      title: "Mobility and movement",
+      copy: "Agility, balance and control, assessed through Parisi's dynamic warm-up.",
+    },
+  ] as const,
+} as const;
+
+export const sixtyMinutes = {
+  kicker: "02 / 05",
+  heading: "Sixty minutes, three parts",
   intro:
-    "The evaluation is designed to show where your athlete is now — and give both you and the coach a meaningful benchmark for what comes next.",
+    "Every athlete runs the same protocol. A nine-year-old trying a sport for the first time and a senior chasing a roster spot get tested the same way.",
   steps: [
     {
-      number: "01",
+      number: "STEP 01",
       title: "Assess",
-      copy: "Your athlete works through Parisi's structured warm-up, running analysis and performance testing.",
+      copy: "Your athlete works through Parisi's structured warm-up and running analysis.",
     },
     {
-      number: "02",
+      number: "STEP 02",
       title: "Measure",
-      copy: "Coaches evaluate key areas including speed, power, strength, mobility and movement.",
+      copy: "Coaches test speed, power, strength and movement quality.",
     },
     {
-      number: "03",
+      number: "STEP 03",
       title: "Review",
-      copy: "You and your athlete review the results with the evaluator and discuss the most appropriate next step.",
+      copy: "You and your athlete sit with the coach and go through every result.",
     },
-  ],
-  cta: "Book My Athlete's Free Evaluation",
-  micro: "No cost • Approximately 60 minutes • Horsham, PA",
+  ] as const,
+  micro: "No cost. Sixty minutes. 400 Horsham Road.",
 } as const;
 
-export const benefits = {
-  eyebrow: "TRAIN WITH PURPOSE",
-  headline: "Give Their Effort a Direction.",
-  support:
-    "Young athletes already put in the work. The evaluation helps identify where focused coaching may make the biggest difference — whether that's acceleration, strength, movement quality, mechanics or overall athletic confidence.",
+export const direction = {
+  kicker: "03 / 05",
+  heading: "Give their effort a direction",
+  body: "Young athletes already put the work in. Practices, games, tournaments most weekends. What the evaluation adds is a read on where that effort would pay off fastest.",
   items: [
     {
       title: "Speed",
-      copy: "Develop better acceleration mechanics and more efficient movement.",
+      copy: "Better acceleration mechanics and a more efficient stride.",
     },
     {
       title: "Strength",
-      copy: "Build the physical foundation needed for athletic movement and performance.",
+      copy: "The physical base that movement and performance sit on.",
     },
     {
       title: "Movement",
-      copy: "Improve control, mobility and the way the athlete moves through sport.",
+      copy: "Control, mobility and how the athlete moves inside their sport.",
     },
     {
       title: "Confidence",
-      copy: "Create confidence through coaching, clear goals and measurable progress.",
+      copy: "Clear goals, measurable progress, and coaching that tracks both.",
     },
-  ],
+  ] as const,
 } as const;
 
 export const whyParisi = {
-  eyebrow: "WHY PARISI",
-  headline: "Performance Training With a System Behind It.",
-  copy: "For more than 25 years, the Parisi system has helped athletes build speed, strength, confidence and athletic ability through structured performance training.",
+  kicker: "04 / 05",
+  heading: "A system behind the training",
+  // [VERIFY: confirm the exact figure with the franchise before this line ships.]
+  body: "Parisi has spent more than two decades building a method for developing young athletes.",
   local:
-    "At Parisi Horsham, the evaluation comes first for a reason: the coach should understand the athlete before deciding how that athlete should train.",
-  supporting: "650,000+ athletes have trained through the Parisi system.",
+    "At Horsham the evaluation comes first, and that order is deliberate. A coach should understand how an athlete moves before deciding how that athlete trains.",
 } as const;
 
-export const parentResults = {
-  headline: "You'll Leave Knowing More Than When You Walked In.",
-  copy: "After testing is complete, you'll review the results with the evaluator. You'll see where your athlete currently stands, where there may be room to develop, and which training direction makes the most sense from there.",
-  cta: "Book a Free Evaluation",
+export const faq = {
+  kicker: "05 / 05",
+  heading: "Questions parents ask first",
+  items: [
+    {
+      question: "Is the evaluation actually free?",
+      answer: "Yes. No card, no deposit, no membership.",
+    },
+    {
+      question: "How long does it take?",
+      answer:
+        "Sixty minutes of testing. Add a few minutes at the front desk when you arrive.",
+    },
+    {
+      question: "Does my athlete need training experience?",
+      answer: "No. A first-timer and a varsity starter run the same testing.",
+    },
+    {
+      question: "What should they bring?",
+      answer: "Athletic clothes, trainers and water.",
+    },
+    {
+      question: "Do parents stay?",
+      answer: "Yes. You watch the testing and you sit in on the review at the end.",
+    },
+    {
+      question: "Will I get a sales pitch?",
+      answer:
+        "A coach will tell you what the numbers show and which program would suit your athlete. You leave with the results either way.",
+    },
+    {
+      question: "Where is it and where do I park?",
+      answer:
+        "400 Horsham Road, Horsham, PA 19044. Free parking on site, and the training floor is straight through the main entrance.",
+    },
+  ] as const,
 } as const;
 
-export const faqs = [
-  {
-    question: "Is the evaluation really free?",
-    answer: "Yes. The athletic performance evaluation is offered at no cost.",
+export const formCopy = {
+  heading: "Request your evaluation",
+  sub: "Two steps. A coach calls you to lock in the time.",
+  step1: "Your details",
+  step2: "Your athlete",
+  continue: "Continue",
+  back: "Back",
+  sending: "Sending",
+  expectation: "A coach calls to confirm your time. Usually the same day.",
+  consent:
+    "I agree to receive texts and calls from Parisi Speed School Horsham about this evaluation. Message and data rates may apply. Reply STOP to opt out. Consent is not required to book.",
+  successHeading: "Got it.",
+  successBody: (phone: string) =>
+    `A coach from Parisi Horsham will call to confirm your time. If you would rather reach us first, call ${phone}.`,
+  errorBody: (phone: string) =>
+    `That did not go through. Try again, or call ${phone}.`,
+  fields: {
+    firstName: "First name",
+    lastName: "Last name",
+    email: "Email",
+    mobile: "Mobile",
+    athleteFirstName: "Athlete's first name",
+    athleteAge: "Athlete's age",
+    sport: "Main sport",
+    availability: "When suits you",
+    notes: "Anything we should know",
   },
-  {
-    question: "How long does it take?",
-    answer: "Plan for approximately 60 minutes.",
-  },
-  {
-    question: "Who is the evaluation for?",
-    answer:
-      "The current Parisi Horsham evaluation offer is for athletes ages 5–18.",
-  },
-  {
-    question: "What will my athlete be evaluated on?",
-    answer:
-      "The evaluation may include Parisi's dynamic warm-up, running analysis, the 10-yard dash, vertical jump, mobility work, and physical speed and strength testing.",
-  },
-  {
-    question: "What happens after the evaluation?",
-    answer:
-      "You'll review the results with the evaluator and discuss the appropriate next step based on your athlete's current abilities and goals.",
-  },
-] as const;
-
-export const booking = {
-  id: "book-evaluation",
-  headline: "Give Your Athlete a Clear Starting Point.",
-  copy: "Choose a time for a free 60-minute Parisi Performance Evaluation at our Horsham location.",
-  proofs: ["Free Evaluation", "Ages 5–18", "60 Minutes", "Horsham, PA"],
-  offerTitle: "Free Athletic Performance Evaluation",
 } as const;
 
-export const ctaLabels = {
-  primary: "Book My Athlete's Free Evaluation",
-  short: "Book Free Evaluation",
-  parent: "Book a Free Evaluation",
+export const locationCopy = {
+  heading: "Find us",
+  parking:
+    "Free parking on site. The training floor is straight through the main entrance.",
+  mapsLabel: "Open in Google Maps",
+} as const;
+
+export const footerCopy = {
+  privacy: "Privacy Policy",
+  terms: "Terms",
+  sms: "SMS Terms",
 } as const;

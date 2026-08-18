@@ -1,38 +1,38 @@
-import { assessment } from "@/lib/content";
-import { SectionReveal } from "./SectionReveal";
-
-function AccentMark() {
-  return <span className="mb-4 block h-1 w-10 bg-parisi" aria-hidden />;
-}
+import { baseline } from "@/lib/content";
+import { Reveal } from "@/components/Reveal";
 
 export function AssessmentSection() {
   return (
-    <section className="section-pad bg-white" aria-labelledby="assessment-heading">
+    <section
+      id="whats-tested"
+      className="section-pad scroll-mt-[72px] bg-canvas"
+      aria-labelledby="baseline-heading"
+    >
       <div className="container-page">
-        <SectionReveal className="max-w-3xl">
-          <p className="eyebrow">{assessment.eyebrow}</p>
-          <h2
-            id="assessment-heading"
-            className="mt-3 text-3xl font-bold text-near-black md:text-4xl lg:text-[2.75rem]"
-          >
-            {assessment.headline}
+        <Reveal>
+          <p className="label-caps text-accent-bright">{baseline.kicker}</p>
+          <h2 id="baseline-heading" className="display-xl mt-4">
+            {baseline.heading}
           </h2>
-          <div className="mt-5 space-y-4 text-base leading-relaxed text-muted md:text-lg">
-            {assessment.body.map((paragraph) => (
-              <p key={paragraph}>{paragraph}</p>
+          <div className="measure mt-6 space-y-4">
+            {baseline.body.map((paragraph) => (
+              <p key={paragraph} className="body">
+                {paragraph}
+              </p>
             ))}
           </div>
-        </SectionReveal>
-
-        <div className="mt-10 grid gap-5 md:mt-14 md:grid-cols-3">
-          {assessment.cards.map((card, index) => (
-            <SectionReveal key={card.title} delayMs={index * 60}>
-              <article className="h-full border-t-[3px] border-parisi bg-surface px-5 py-6 md:px-6 md:py-7">
-                <AccentMark />
-                <h3 className="text-xl font-bold text-near-black">{card.title}</h3>
-                <p className="mt-3 text-base leading-relaxed text-muted">{card.copy}</p>
-              </article>
-            </SectionReveal>
+        </Reveal>
+        <div className="mt-12 grid gap-8 lg:mt-16 lg:grid-cols-3 lg:gap-0 lg:divide-x lg:divide-hairline">
+          {baseline.columns.map((column, index) => (
+            <Reveal
+              key={column.title}
+              index={index}
+              className="border-t border-hairline pt-8 lg:border-t-0 lg:px-8 lg:pt-0 lg:first:pl-0 lg:last:pr-0"
+            >
+              <div className="mb-4 h-10 w-[2px] bg-accent" aria-hidden />
+              <h3 className="display-md">{column.title}</h3>
+              <p className="body mt-3 max-w-[34rem]">{column.copy}</p>
+            </Reveal>
           ))}
         </div>
       </div>

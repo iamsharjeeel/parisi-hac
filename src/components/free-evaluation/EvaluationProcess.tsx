@@ -1,47 +1,39 @@
-import { process as processContent } from "@/lib/content";
-import { PrimaryCTA } from "./PrimaryCTA";
-import { SectionReveal } from "./SectionReveal";
+import { ctaLabel, sixtyMinutes } from "@/lib/content";
+import { Reveal } from "@/components/Reveal";
 
 export function EvaluationProcess() {
   return (
     <section
-      className="section-pad diagonal-cut bg-near-black text-white"
+      className="section-pad bg-canvas-raised"
       aria-labelledby="process-heading"
     >
-      <div className="container-page pb-10 md:pb-16">
-        <SectionReveal className="max-w-3xl">
-          <p className="eyebrow text-parisi">{processContent.eyebrow}</p>
-          <h2
-            id="process-heading"
-            className="mt-3 text-3xl font-bold md:text-4xl lg:text-[2.75rem]"
-          >
-            {processContent.headline}
+      <div className="container-page">
+        <Reveal>
+          <p className="label-caps text-accent-bright">{sixtyMinutes.kicker}</p>
+          <h2 id="process-heading" className="display-xl mt-4">
+            {sixtyMinutes.heading}
           </h2>
-          <p className="mt-5 text-base leading-relaxed text-white/70 md:text-lg">
-            {processContent.intro}
-          </p>
-        </SectionReveal>
-
-        <ol className="mt-10 grid gap-6 md:mt-14 md:grid-cols-3 md:gap-8">
-          {processContent.steps.map((step, index) => (
-            <SectionReveal key={step.number} delayMs={index * 70}>
-              <li className="relative border border-white/10 bg-white/[0.03] p-6">
-                <p className="font-heading text-sm font-semibold tracking-[0.18em] text-parisi">
-                  STEP {step.number}
-                </p>
-                <h3 className="mt-3 text-2xl font-bold">{step.title}</h3>
-                <p className="mt-3 text-base leading-relaxed text-white/68">{step.copy}</p>
-              </li>
-            </SectionReveal>
+          <p className="body-lg measure mt-6">{sixtyMinutes.intro}</p>
+        </Reveal>
+        <ol className="mt-12 grid gap-6 lg:mt-16 lg:grid-cols-3">
+          {sixtyMinutes.steps.map((step, index) => (
+            <li key={step.number}>
+              <Reveal index={index}>
+                <div className="border border-hairline border-t-2 border-t-accent bg-canvas-card p-6">
+                  <p className="label-caps text-muted">{step.number}</p>
+                  <h3 className="display-md mt-3">{step.title}</h3>
+                  <p className="body mt-3">{step.copy}</p>
+                </div>
+              </Reveal>
+            </li>
           ))}
         </ol>
-
-        <SectionReveal className="mt-10 flex flex-col gap-3 sm:items-start md:mt-12">
-          <PrimaryCTA placement="process" fullWidth className="sm:w-auto sm:min-w-[20rem]">
-            {processContent.cta}
-          </PrimaryCTA>
-          <p className="text-sm text-white/60">{processContent.micro}</p>
-        </SectionReveal>
+        <Reveal className="mt-10 flex flex-col gap-3 sm:items-start">
+          <a href="#request-evaluation" className="btn-primary">
+            {ctaLabel}
+          </a>
+          <p className="body text-muted">{sixtyMinutes.micro}</p>
+        </Reveal>
       </div>
     </section>
   );

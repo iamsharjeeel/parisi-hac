@@ -1,29 +1,19 @@
-"use client";
-
-import { trackEvaluationCTAClick } from "@/lib/analytics";
+import type { ReactNode } from "react";
+import { ctaLabel } from "@/lib/content";
 
 type Props = {
   href?: string;
-  children: React.ReactNode;
-  placement: string;
+  children?: ReactNode;
   className?: string;
-  fullWidth?: boolean;
 };
 
 export function PrimaryCTA({
-  href = "#book-evaluation",
-  children,
-  placement,
+  href = "#request-evaluation",
+  children = ctaLabel,
   className = "",
-  fullWidth = false,
 }: Props) {
   return (
-    <a
-      href={href}
-      data-cta-placement={placement}
-      className={`btn-primary ${fullWidth ? "w-full" : ""} ${className}`.trim()}
-      onClick={() => trackEvaluationCTAClick(placement)}
-    >
+    <a href={href} className={`btn-primary ${className}`.trim()}>
       {children}
     </a>
   );

@@ -5,15 +5,16 @@ import { AssessmentSection } from "./AssessmentSection";
 import { EvaluationProcess } from "./EvaluationProcess";
 import { BenefitsSection } from "./BenefitsSection";
 import { WhyParisiSection } from "./WhyParisiSection";
-import { ParentResultsSection } from "./ParentResultsSection";
+import { Testimonials } from "@/components/Testimonials";
 import { FAQSection } from "./FAQSection";
-import { BookingSection } from "./BookingSection";
+import { FormSection } from "./FormSection";
+import { LocationSection } from "./LocationSection";
 import { MobileStickyCTA } from "./MobileStickyCTA";
 import { LandingFooter } from "./LandingFooter";
 
 export function FreeEvaluationPage() {
   return (
-    <div id="top" className="min-h-screen bg-white">
+    <div id="top" className="min-h-svh bg-canvas pb-16 lg:pb-0">
       <LandingHeader />
       <main>
         <HeroSection />
@@ -22,9 +23,10 @@ export function FreeEvaluationPage() {
         <EvaluationProcess />
         <BenefitsSection />
         <WhyParisiSection />
-        <ParentResultsSection />
+        <Testimonials />
         <FAQSection />
-        <BookingSection />
+        <FormSection />
+        <LocationSection />
       </main>
       <LandingFooter />
       <MobileStickyCTA />

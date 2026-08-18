@@ -1,32 +1,24 @@
-import { benefits } from "@/lib/content";
-import { SectionReveal } from "./SectionReveal";
+import { direction } from "@/lib/content";
+import { Reveal } from "@/components/Reveal";
 
 export function BenefitsSection() {
   return (
-    <section className="section-pad bg-white" aria-labelledby="benefits-heading">
+    <section className="section-pad bg-canvas" aria-labelledby="direction-heading">
       <div className="container-page">
-        <SectionReveal className="max-w-3xl">
-          <p className="eyebrow">{benefits.eyebrow}</p>
-          <h2
-            id="benefits-heading"
-            className="mt-3 text-3xl font-bold text-near-black md:text-4xl lg:text-[2.75rem]"
-          >
-            {benefits.headline}
+        <Reveal>
+          <p className="label-caps text-accent-bright">{direction.kicker}</p>
+          <h2 id="direction-heading" className="display-xl mt-4">
+            {direction.heading}
           </h2>
-          <p className="mt-5 text-base leading-relaxed text-muted md:text-lg">
-            {benefits.support}
-          </p>
-        </SectionReveal>
-
-        <div className="mt-10 grid gap-8 sm:grid-cols-2 lg:mt-14 lg:grid-cols-4 lg:gap-10">
-          {benefits.items.map((item, index) => (
-            <SectionReveal key={item.title} delayMs={index * 50}>
-              <div>
-                <div className="mb-3 h-[2px] w-8 bg-parisi" aria-hidden />
-                <h3 className="text-xl font-bold text-near-black">{item.title}</h3>
-                <p className="mt-2 text-base leading-relaxed text-muted">{item.copy}</p>
-              </div>
-            </SectionReveal>
+          <p className="body measure mt-6">{direction.body}</p>
+        </Reveal>
+        <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:mt-16 lg:grid-cols-4">
+          {direction.items.map((item, index) => (
+            <Reveal key={item.title} index={index}>
+              <div className="mb-4 h-8 w-[2px] bg-accent" aria-hidden />
+              <h3 className="display-md">{item.title}</h3>
+              <p className="body mt-3 max-w-[34rem]">{item.copy}</p>
+            </Reveal>
           ))}
         </div>
       </div>

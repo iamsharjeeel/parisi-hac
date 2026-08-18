@@ -1,15 +1,16 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, type ReactNode } from "react";
 
 type Props = {
-  children: React.ReactNode;
+  children: ReactNode;
   className?: string;
-  delayMs?: number;
+  index?: number;
 };
 
-export function SectionReveal({ children, className = "", delayMs = 0 }: Props) {
+export function Reveal({ children, className = "", index = 0 }: Props) {
   const ref = useRef<HTMLDivElement>(null);
+  const delay = Math.min(index, 3) * 80;
 
   useEffect(() => {
     const node = ref.current;
@@ -17,14 +18,14 @@ export function SectionReveal({ children, className = "", delayMs = 0 }: Props) 
 
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reduced) {
-      node.classList.add("is-visible");
+      node.classList.add("is-in");
       return;
     }
 
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          window.setTimeout(() => node.classList.add("is-visible"), delayMs);
+          node.classList.add("is-in");
           observer.disconnect();
         }
       },
@@ -33,10 +34,14 @@ export function SectionReveal({ children, className = "", delayMs = 0 }: Props) 
 
     observer.observe(node);
     return () => observer.disconnect();
-  }, [delayMs]);
+  }, []);
 
   return (
-    <div ref={ref} className={`reveal ${className}`.trim()}>
+    <div
+      ref={ref}
+      className={`reveal ${className}`.trim()}
+      style={{ ["--reveal-delay" as string]: `${delay}ms` }}
+    >
       {children}
     </div>
   );

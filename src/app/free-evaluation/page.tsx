@@ -2,28 +2,28 @@ import type { Metadata } from "next";
 import { FreeEvaluationPage } from "@/components/free-evaluation/FreeEvaluationPage";
 
 export const metadata: Metadata = {
-  title: "Free Athletic Performance Evaluation | Parisi Speed School Horsham",
+  title: "Free Athletic Evaluation | Parisi Speed School Horsham",
   description:
-    "Book a free 60-minute athletic performance evaluation for athletes ages 5–18 at Parisi Speed School Horsham. Assess speed, power, mobility and movement.",
+    "Free 60-minute evaluation for athletes ages 5 to 18 at Parisi Speed School Horsham. Speed, power and movement, measured by a coach.",
   openGraph: {
-    title: "Free Athletic Performance Evaluation | Parisi Speed School Horsham",
+    title: "Free Athletic Evaluation | Parisi Speed School Horsham",
     description:
-      "Book a free 60-minute athletic performance evaluation for athletes ages 5–18 at Parisi Speed School Horsham. Assess speed, power, mobility and movement.",
+      "Free 60-minute evaluation for athletes ages 5 to 18 at Parisi Speed School Horsham.",
     type: "website",
     images: [
       {
         url: "/images/og-evaluation.webp",
         width: 1200,
         height: 630,
-        alt: "Parisi Speed School Horsham athletic performance training",
+        alt: "Parisi Speed School Horsham",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Free Athletic Performance Evaluation | Parisi Speed School Horsham",
+    title: "Free Athletic Evaluation | Parisi Speed School Horsham",
     description:
-      "Book a free 60-minute athletic performance evaluation for athletes ages 5–18 at Parisi Speed School Horsham.",
+      "Free 60-minute evaluation for athletes ages 5 to 18 at Parisi Speed School Horsham.",
     images: ["/images/og-evaluation.webp"],
   },
 };

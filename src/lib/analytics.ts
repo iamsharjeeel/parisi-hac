@@ -1,9 +1,3 @@
-export const BOOKING_EVENT_NAME = "Schedule" as const;
-export const BOOKING_CONTENT_NAME = "Parisi Horsham Free Evaluation";
-export const CTA_CLICK_EVENT = "EvaluationCTAClick";
-
-const DEDUPE_KEY = "parisi_schedule_event_id";
-
 declare global {
   interface Window {
     fbq?: (
@@ -17,81 +11,26 @@ declare global {
 }
 
 export function createEventId(): string {
-  if (typeof crypto !== "undefined" && "randomUUID" in crypto) {
-    return crypto.randomUUID();
+  const webCrypto = globalThis.crypto;
+  if (webCrypto && typeof webCrypto.randomUUID === "function") {
+    return webCrypto.randomUUID();
   }
-  return `evt_${Date.now()}_${Math.random().toString(36).slice(2, 10)}`;
-}
-
-function isProductionTrackingEnabled(): boolean {
-  if (typeof window === "undefined") return false;
-  if (process.env.NODE_ENV !== "production") return false;
-  return Boolean(process.env.NEXT_PUBLIC_META_PIXEL_ID);
-}
-
-export function trackEvaluationCTAClick(placement: string): void {
-  if (typeof window === "undefined") return;
-  if (!isProductionTrackingEnabled()) return;
-  if (typeof window.fbq !== "function") return;
-
-  window.fbq("trackCustom", CTA_CLICK_EVENT, {
-    content_name: BOOKING_CONTENT_NAME,
-    placement,
-  });
-}
-
-/**
- * Fire Meta Schedule ONLY after a successfully confirmed evaluation booking.
- * Dedupes within the session so Pixel + thank-you route cannot double-fire.
- */
-export function trackEvaluationBookingSuccess(options?: {
-  eventId?: string;
-  source?: string;
-}): string | null {
-  if (typeof window === "undefined") return null;
-
-  try {
-    const existing = sessionStorage.getItem(DEDUPE_KEY);
-    if (existing) return existing;
-  } catch {
-    /* continue */
-  }
-
-  const eventId = options?.eventId ?? createEventId();
-
-  try {
-    sessionStorage.setItem(DEDUPE_KEY, eventId);
-  } catch {
-    /* ignore */
-  }
-
-  if (!isProductionTrackingEnabled()) {
-    if (process.env.NODE_ENV !== "production") {
-      console.info("[analytics] Schedule suppressed outside production", {
-        eventId,
-        source: options?.source,
-      });
+  const bytes = new Uint8Array(16);
+  if (webCrypto && typeof webCrypto.getRandomValues === "function") {
+    webCrypto.getRandomValues(bytes);
+  } else {
+    for (let i = 0; i < bytes.length; i += 1) {
+      bytes[i] = Math.floor(Math.random() * 256);
     }
-    return eventId;
   }
-
-  if (typeof window.fbq === "function") {
-    window.fbq(
-      "track",
-      BOOKING_EVENT_NAME,
-      { content_name: BOOKING_CONTENT_NAME },
-      { eventID: eventId },
-    );
-  }
-
-  return eventId;
+  bytes[6] = (bytes[6] & 0x0f) | 0x40;
+  bytes[8] = (bytes[8] & 0x3f) | 0x80;
+  const hex = [...bytes].map((b) => b.toString(16).padStart(2, "0")).join("");
+  return `${hex.slice(0, 8)}-${hex.slice(8, 12)}-${hex.slice(12, 16)}-${hex.slice(16, 20)}-${hex.slice(20)}`;
 }
 
-export function hasTrackedBookingSuccess(): boolean {
-  if (typeof window === "undefined") return false;
-  try {
-    return Boolean(sessionStorage.getItem(DEDUPE_KEY));
-  } catch {
-    return false;
-  }
+export function trackLead(eventId: string): void {
+  if (typeof window === "undefined") return;
+  if (typeof window.fbq !== "function") return;
+  window.fbq("track", "Lead", {}, { eventID: eventId });
 }

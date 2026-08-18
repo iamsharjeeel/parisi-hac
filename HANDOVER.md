@@ -1,29 +1,31 @@
-## HANDOVER — Parisi Free Evaluation Landing
+## HANDOVER — Parisi Free Evaluation Landing v2
 
 ### What changed
-- Redesigned booking form UI: dark Parisi card, themed WL fields, scaled captcha treatment, shadow-DOM theme injection
-- Fixed Vercel build: removed broken `Source_Sans_3` next/font fetch (gstatic 404s); Kanit only
-- Built production Meta Ads landing page at `/free-evaluation`
-- Reused verified WellnessLiving lead-capture widget from live Horsham evaluation page
-- Added Meta Pixel PageView + `Schedule` conversion tracking (confirmation-only)
-- Captures UTMs + `fbclid` in sessionStorage
+- Rebuilt the landing page to cinematic-hero (true black, Archivo, 0 radius)
+- Phone number set to `215-262-2935` in `src/lib/content.ts` (single constant)
+- Replaced WellnessLiving embed with a two-step lead form posting to `/api/lead`
+- Added Turnstile (invisible), honeypot, timing check, hashed IP rate limit, Zod validation
+- Server forwards validated payloads to GHL; webhook stays server-side
+- Added `/privacy`, `/terms`, `/sms-terms` placeholders
+- Meta Pixel fires `Lead` with `eventId` after a 200 from `/api/lead`
 
 ### Files touched
-- `src/app/free-evaluation/page.tsx` — landing route
-- `src/app/thank-you/page.tsx` — confirmation / Schedule fire backup
-- `src/components/free-evaluation/*` — page sections
-- `src/lib/{content,analytics,attribution,booking}.ts`
-- `src/components/analytics/*`
-- `public/images/*` — logo + optimized local training photography
+- `src/app/globals.css`, `src/app/layout.tsx`, `next.config.ts`
+- `src/lib/content.ts`, `src/lib/schema.ts`, `src/lib/testimonials.ts`, `src/lib/attribution.ts`, `src/lib/analytics.ts`
+- `src/components/LeadForm.tsx`, `src/components/Reveal.tsx`, `src/components/Testimonials.tsx`
+- `src/components/free-evaluation/*`
+- `src/app/api/lead/route.ts`
+- `src/app/privacy/page.tsx`, `src/app/terms/page.tsx`, `src/app/sms-terms/page.tsx`
 - `.env.example`, `README.md`, `CHANGELOG.md`
 
 ### Pending / needs from owner
-- Set `NEXT_PUBLIC_META_PIXEL_ID` in production (HAC site uses `290507659146418` — confirm correct campaign pixel)
-- Optionally configure WellnessLiving success redirect → `/thank-you`
-- Replace hero/coaching imagery later if stronger Horsham assets become available
-- CAPI not implemented (no server token present) — Pixel-only Schedule with eventID ready for future CAPI dedupe
+- Youth-athlete photography for hero and Why Parisi (`[ASSET]`)
+- Confirm `25+` years and `650,000+` athletes (`[VERIFY]`)
+- GHL webhook URL, Turnstile keys, Meta Pixel ID, `RATE_LIMIT_SALT`
+- Legal copy for privacy / terms / SMS terms (`[CONTENT PENDING]`)
+- Permissioned testimonials (`src/lib/testimonials.ts` is empty by design)
+- Confirm GHL Conversions API uses the same `eventId`
 
 ### Notes
-- Home `/` redirects to `/free-evaluation`
-- Privacy/Terms link to existing live site URLs (not fabricated)
-- No fake testimonials
+- Do not ship the adult-athlete photos currently in `public/images/`
+- Rate limiter is per serverless instance, not a distributed guarantee
