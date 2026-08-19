@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { site } from "@/lib/content";
 
 export function LandingFooter() {
@@ -19,23 +20,16 @@ export function LandingFooter() {
           </a>
         </div>
 
-        <nav aria-label="Legal" className="flex gap-5 text-sm text-muted">
-          <a
-            href={site.privacyUrl}
-            className="transition-colors hover:text-parisi"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+        <nav aria-label="Legal" className="flex flex-wrap gap-5 text-sm text-muted">
+          <Link href={site.privacyUrl} className="transition-colors hover:text-parisi">
             Privacy Policy
-          </a>
-          <a
-            href={site.termsUrl}
-            className="transition-colors hover:text-parisi"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Terms
-          </a>
+          </Link>
+          <Link href={site.termsUrl} className="transition-colors hover:text-parisi">
+            Terms of Service
+          </Link>
+          <Link href={site.smsTermsUrl} className="transition-colors hover:text-parisi">
+            SMS Terms & Conditions
+          </Link>
         </nav>
       </div>
     </footer>

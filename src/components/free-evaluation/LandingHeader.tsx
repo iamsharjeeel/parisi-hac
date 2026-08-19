@@ -2,11 +2,19 @@ import Image from "next/image";
 import { site, ctaLabels } from "@/lib/content";
 import { PrimaryCTA } from "./PrimaryCTA";
 
-export function LandingHeader() {
+type Props = {
+  homeHref?: string;
+  ctaHref?: string;
+};
+
+export function LandingHeader({
+  homeHref = "#top",
+  ctaHref,
+}: Props) {
   return (
     <header className="sticky top-0 z-40 border-b border-line/80 bg-white/95 backdrop-blur-sm">
       <div className="container-page flex h-[var(--header-h)] items-center justify-between gap-4">
-        <a href="#top" className="shrink-0" aria-label={`${site.name} home`}>
+        <a href={homeHref} className="shrink-0" aria-label={`${site.name} home`}>
           <Image
             src="/images/parisi-horsham-logo.png"
             alt="Parisi Speed School Horsham"
@@ -25,6 +33,7 @@ export function LandingHeader() {
             {site.phoneDisplay}
           </a>
           <PrimaryCTA
+            href={ctaHref}
             placement="header"
             className="!min-h-11 px-4 text-sm md:!min-h-[52px] md:px-5 md:text-base"
           >
