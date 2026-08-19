@@ -1,23 +1,20 @@
 ## HANDOVER — Parisi Free Evaluation Landing
 
 ### What changed
-- Redesigned booking form UI: dark Parisi card, themed WL fields, scaled captcha treatment, shadow-DOM theme injection
-- Fixed Vercel build: removed broken `Source_Sans_3` next/font fetch (gstatic 404s); Kanit only
-- Built production Meta Ads landing page at `/free-evaluation`
-- Reused verified WellnessLiving lead-capture widget from live Horsham evaluation page
-- Added Meta Pixel PageView + `Schedule` conversion tracking (confirmation-only)
-- Captures UTMs + `fbclid` in sessionStorage
+- Replaced displayed phone `267-266-3430` with `+1 215-706-8260` everywhere (header, footer, thank-you, booking fallback)
+- Added on-site `/privacy`, `/terms`, and `/sms-terms` using the HAC A2P legal pack with Parisi Horsham identity, `info@parisihorsham.com`, and the new phone
+- Footer now links internally to Privacy, Terms of Service, and SMS Terms & Conditions (live `/privacy` and `/terms` were 404s)
 
 ### Files touched
-- `src/app/free-evaluation/page.tsx` — landing route
-- `src/app/thank-you/page.tsx` — confirmation / Schedule fire backup
-- `src/components/free-evaluation/*` — page sections
-- `src/lib/{content,analytics,attribution,booking}.ts`
-- `src/components/analytics/*`
-- `public/images/*` — logo + optimized local training photography
-- `.env.example`, `README.md`, `CHANGELOG.md`
+- `src/lib/content.ts` — phone, email, internal legal URLs
+- `src/app/privacy/page.tsx`, `src/app/terms/page.tsx`, `src/app/sms-terms/page.tsx`
+- `src/components/legal/LegalChrome.tsx`
+- `src/components/free-evaluation/{LandingHeader,LandingFooter}.tsx`
+- `src/app/globals.css`
+- `README.md`, `CHANGELOG.md`, `HANDOVER.md`
 
 ### Pending / needs from owner
+- Attached Privacy/Terms/SMS files were not in the agent payload; confirm the published copy (especially legal entity / DBA) against the documents you meant to attach
 - Set `NEXT_PUBLIC_META_PIXEL_ID` in production (HAC site uses `290507659146418` — confirm correct campaign pixel)
 - Optionally configure WellnessLiving success redirect → `/thank-you`
 - Replace hero/coaching imagery later if stronger Horsham assets become available
@@ -25,5 +22,4 @@
 
 ### Notes
 - Home `/` redirects to `/free-evaluation`
-- Privacy/Terms link to existing live site URLs (not fabricated)
 - No fake testimonials
